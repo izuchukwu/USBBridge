@@ -27,4 +27,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     compile project(':usbbridge')
+    implementation  'de.waldheinz:fat32-lib:0.6.5'
+    implementation 'com.github.mjdev:libaums:0.5.5'
 }

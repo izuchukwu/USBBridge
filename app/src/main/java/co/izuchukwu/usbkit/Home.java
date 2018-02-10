@@ -93,9 +93,9 @@ public class Home extends AppCompatActivity {
     //
 
     public void log(String tag, String message) {
-        Log.v(test, message);
+        Log.v(tag, message);
         TextView logTextView = (TextView) findViewById(R.id.logTextView);
-        logTextView.append("\n[" + test + "] " + message);
+        logTextView.append("\n[" + tag + "] " + message);
         scrollLogToBottom();
     }
 
