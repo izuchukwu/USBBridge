@@ -9,11 +9,14 @@ A lot of Android devices support USB OTG, which lets you read USB drives. But mo
 I need FAT16 support to build [TeenageKit](https://github.com/izuchukwu/teenagekit). libaums has it via [javafs](https://github.com/magnusja/libaums/tree/develop/javafs), a JNode FS implementation for libaums by the same dev, but is still very much experimental. fat32-lib is another JNode FS implementation but with years of fixes, so let's bridge the two.
 
 ### Installing it
-`¯\_(ツ)_/¯`
-<br>Until I get this sorted:
-1. Install libaums
-2. Install fat32-lib
-3. Copy USBBridge's Java source files into your project
+Install libaums and fat32-lib with gradle:
+```yaml
+dependencies {
+    implementation  'de.waldheinz:fat32-lib:0.6.5'
+    implementation 'com.github.mjdev:libaums:0.5.5'
+}
+```
+Then add the USBBridge java files to your project. I'll get a better install process if this works out.
 
 ### Using it
 coming sometime
