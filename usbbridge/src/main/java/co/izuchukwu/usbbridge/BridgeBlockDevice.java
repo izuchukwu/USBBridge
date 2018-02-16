@@ -7,16 +7,20 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 
 import de.waldheinz.fs.BlockDevice;
+import de.waldheinz.fs.FileSystem;
+import de.waldheinz.fs.FileSystemFactory;
 import de.waldheinz.fs.ReadOnlyException;
 
 public class BridgeBlockDevice implements BlockDevice {
 
     private BlockDeviceDriver blockDevice;
     private com.github.mjdev.libaums.partition.PartitionTableEntry partitionTableEntry;
+    public FileSystem fs;
 
-    public BridgeBlockDevice(BlockDeviceDriver blockDevice, PartitionTableEntry partitionTableEntry) {
+    public BridgeBlockDevice(BlockDeviceDriver blockDevice, PartitionTableEntry partitionTableEntry) throws IOException {
         this.blockDevice = blockDevice;
         this.partitionTableEntry = partitionTableEntry;
+        this.fs = FileSystemFactory.create(this, true);
     }
 
     @Override
@@ -36,7 +40,7 @@ public class BridgeBlockDevice implements BlockDevice {
 
     @Override
     public void flush() throws IOException {
-        // ¯\_(ツ)_/¯
+        fs.flush();
     }
 
     @Override
@@ -46,16 +50,16 @@ public class BridgeBlockDevice implements BlockDevice {
 
     @Override
     public void close() throws IOException {
-        return;
+        fs.close();
     }
 
     @Override
     public boolean isClosed() {
-        return false;
+        return fs.isClosed();
     }
 
     @Override
     public boolean isReadOnly() {
-        return false;
+        return fs.isReadOnly();
     }
 }

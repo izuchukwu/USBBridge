@@ -1,5 +1,7 @@
 package co.izuchukwu.usbbridge;
 
+import android.util.Log;
+
 import com.github.mjdev.libaums.driver.BlockDeviceDriver;
 import com.github.mjdev.libaums.fs.FileSystem;
 import com.github.mjdev.libaums.fs.FileSystemCreator;
@@ -18,7 +20,12 @@ public class BridgeFileSystemCreator implements FileSystemCreator {
         ByteBuffer buffer = ByteBuffer.allocate(4096);
         blockDevice.read(0, buffer);
 
-        BridgeBlockDevice bridgeBlockDevice = new BridgeBlockDevice(blockDevice, entry);
+        try {
+            BridgeBlockDevice bridgeBlockDevice = new BridgeBlockDevice(blockDevice, entry);
+
+        } catch (IOException e) {
+            Log.e("[USBBridge]", "Error modeling the file system. Are you sure this is FAT?");
+        }
 
         return null;
     }
