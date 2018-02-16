@@ -214,6 +214,6 @@ public class BridgeUSBFile extends AbstractUsbFile {
 
     @Override
     public boolean isRoot() {
-        return false //figure this out;
+        return false // figure this out next;
     }
 }
